@@ -1,0 +1,13 @@
+{
+  "name": "HondaCAN",
+  "version": "1.0",
+  "keywords": "",
+  "description": "",
+  "repository":
+  {
+    "type": "git",
+    "url": "https://github.com/Ldalvik/HondaCAN.git"
+  },
+  "frameworks": "arduino",
+  "platforms": ["espressif32"]
+}
