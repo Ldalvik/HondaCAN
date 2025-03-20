@@ -7,6 +7,7 @@ class HondaCAN {
 public:
     HondaCAN(); 
     bool begin();             
+    bool addFilter(uint32_t id);             
     void run();             
 
    int LED_EN = 13;

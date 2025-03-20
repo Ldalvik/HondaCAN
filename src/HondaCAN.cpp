@@ -1,20 +1,20 @@
 #include "HondaCAN.h"
 
-HondaCAN::HondaCAN() //: _username(username), _password(password)
+HondaCAN::HondaCAN() //: a(a), b(b)
 {
 }
 
-bool HondaCAN::begin()
+bool HondaCAN::begin(/*uint32_t filter = 0xFFFFFFFF*/)
 {
   pinMode(CAN_RS, OUTPUT);
   digitalWrite(CAN_RS, LOW); // LOW = high speed mode, HIGH = low power mode (listen only)
 
   twai_general_config_t g_config = TWAI_GENERAL_CONFIG_DEFAULT((gpio_num_t)TX_PIN, (gpio_num_t)RX_PIN, TWAI_MODE_NORMAL); // TWAI_MODE_NORMAL, TWAI_MODE_NO_ACK or TWAI_MODE_LISTEN_ONLY
   twai_timing_config_t t_config = TWAI_TIMING_CONFIG_500KBITS();
-  twai_filter_config_t f_config = TWAI_FILTER_CONFIG_ACCEPT_ALL(); // {.acceptance_code = 0, .acceptance_mask = 0xFFFFFFFF, .single_filter = true}
+  twai_filter_config_t f_config = TWAI_FILTER_CONFIG_ACCEPT_ALL(); //{.acceptance_code = filter, .acceptance_mask = 0x7FF, .single_filter = true};
 
-  if (twai_driver_install(&g_config, &t_config, &f_config) != ESP_OK) return 0;
-  if (twai_start() != ESP_OK) return 0;
+  if (twai_driver_install(&g_config, &t_config, &f_config) != ESP_OK) return false;
+  if (twai_start() != ESP_OK) return false;
   return true;
 }
 
@@ -53,7 +53,7 @@ void HondaCAN::parsePowertrainData(uint64_t data)
 //   return analogRead(SENSE_V_ANA);
 // }
 
-// void can_send(uint8_t id, uint64_t data, uint8_t length = 8) {
+// void sendCAN(uint8_t id, uint64_t data, uint8_t length = 8) {
 //   twai_message_t message;
 //   message.identifier = id;
 //   message.extd = 0;
