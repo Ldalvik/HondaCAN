@@ -7,7 +7,6 @@ class HondaCAN {
 public:
     HondaCAN(); 
     bool begin();             
-    bool addFilter(uint32_t id);             
     void run();             
 
    int LED_EN = 13;
@@ -17,8 +16,11 @@ public:
    int SENSE_V_ANA = 35;
 
    POWERTRAIN_DATA PowertrainData;
-
+   GEARBOX_15T Gearbox15T;
+   CAR_SPEED CarSpeed;
 private:
-    void parsePowertrainData(uint64_t data);              
+    void parsePowertrainData(uint8_t data[8]);              
+    void parseGearbox15T(uint8_t data[8]);              
+    void parseCarSpeed(uint8_t data[8]);              
     uint64_t byteConvert(uint8_t data[8]);    
 };
