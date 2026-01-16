@@ -1,43 +1,37 @@
 #pragma once
-#include <Arduino.h>
 #include "driver/twai.h"
 #include "Const.h"
 #include "PIDS.h"
+#include "CANOBD.h"
+#include "Vin.h"
+// Change these if you make a new parser
+#include "Accord_2016_LX/RawCanParser.h"
+#include "Accord_2016_LX/CanParser.h"
 
 class HondaCAN
 {
 public:
     HondaCAN();
-    bool begin();
+    bool macchina_a0_setup(); // Setup for Macchina A0, CAN-11@500kbaud, (2016 Honda Accord LX)
     void run();
-    float obd2Request(uint8_t pid);
-    
-    int LED_EN = 13;
+
+    float batteryVoltage(); // Based on Macchina A0 power sensor wiring, reads +12v pin on OBD port
+
+    RawCanData_t RawCanData; 
+    CanParser ParsedCanData;   // Scaled and adjusted into readable units
+    Telemetry telemetry;  // Struct with all data for streamlined ESP-NOW usage (see examples/espnow)
+    CANOBD OBD;
+    Vin VIN;
+
+private:
+    int LED_EN = 13; // Macchina A0 specific, LED pin
     int RX_PIN = 4;
     int TX_PIN = 5;
     int CAN_RS = 21;
-    int SENSE_V_ANA = 35;
-    int CAN_BIT = 11; // 11 or 21
+    int POWER_SENSE = 35;
 
-    POWERTRAIN_DATA Powertrain;
-    GEARBOX Gearbox;
-    CAR_SPEED CarSpeed;
-    VSA_STATUS VsaStatus;
-    DRIVE_MODES DriveModes;
-    ENGINE_DATA_3 EngineDataThree;
-    ENGINE_DATA_2 EngineDataTwo;
-
-private:
-    void parsePowertrainData(uint8_t data[8]);
-    void parseGearbox(uint8_t data[8]);
-    void parseCarSpeed(uint8_t data[8]);
-    void parseVsaStatus(uint8_t data[8]);
-    void parseDriveModes(uint8_t data[8]);
-    void parseEngineData3(uint8_t data[8]);
-    void parseEngineData2(uint8_t data[8]);
-
-    void obd2_send(uint8_t mode, uint8_t pid);
-    bool obd2_receive();
-    twai_message_t obdResponse;
-    // uint64_t byteConvert(uint8_t data[8]);
+    uint32_t tripDistanceOverflows = 0;
+    uint16_t lastTripDistance = 0;
+    void checkForReset();       // When vehicle is powered off, we need to reset distance traveled. Not sure if reliable
+    void updateTripDistance();  // ECU only stores 1 byte of trip data, so we must track the resets manually
 };

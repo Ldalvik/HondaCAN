@@ -1,11 +1,12 @@
+#pragma once
 #include <cstdint>
 
 // Modes
-const uint8_t read_LiveData= 0x01;   // Read Troubleshoot Codes
-const uint8_t read_FreezeFrame = 0x02;   // Read Troubleshoot Codes
-const uint8_t read_DTCs = 0x03;   // Read Troubleshoot Codes
-const uint8_t clear_DTCs = 0x04;  // Clear Troubleshoot Codes
-const uint8_t read_VehicleInfo = 0x09;  // Clear Troubleshoot Codes
+const uint8_t read_LiveData= 0x01; 
+const uint8_t read_FreezeFrame = 0x02; 
+const uint8_t read_DTCs = 0x03; 
+const uint8_t clear_DTCs = 0x04; 
+const uint8_t read_VehicleInfo = 0x09; 
 
 // PIDs for Vehicle Info
 const uint8_t supported_VehicleInfo = 0x00;  // Read Supported Vehicle Info
@@ -18,13 +19,13 @@ const uint8_t read_ID_Num = 0x06;            // Read Calibration ID Number
 
 // PIDs for Live Data and Freeze Frame
 const uint8_t SUPPORTED_PIDS_1_20              = 0x00;  // bit encoded
-const uint8_t MONITOR_STATUS_SINCE_DTC_CLEARED = 0x01;  // bit encoded          suported
-const uint8_t FREEZE_DTC                       = 0x02;  //                      suported
-const uint8_t FUEL_SYSTEM_STATUS               = 0x03;  // bit encoded          suported
+const uint8_t MONITOR_STATUS_SINCE_DTC_CLEARED = 0x01;  // bit encoded          
+const uint8_t FREEZE_DTC                       = 0x02;  //                      
+const uint8_t FUEL_SYSTEM_STATUS               = 0x03;  // bit encoded          
 const uint8_t ENGINE_LOAD                      = 0x04;  // %
 const uint8_t ENGINE_COOLANT_TEMP              = 0x05;  // °C
-const uint8_t SHORT_TERM_FUEL_TRIM_BANK_1      = 0x06;  // %   suported
-const uint8_t LONG_TERM_FUEL_TRIM_BANK_1       = 0x07;  // %   suported
+const uint8_t SHORT_TERM_FUEL_TRIM_BANK_1      = 0x06;  // %   
+const uint8_t LONG_TERM_FUEL_TRIM_BANK_1       = 0x07;  // %   
 const uint8_t SHORT_TERM_FUEL_TRIM_BANK_2      = 0x08;  // %
 const uint8_t LONG_TERM_FUEL_TRIM_BANK_2       = 0x09;  // %
 const uint8_t FUEL_PRESSURE                    = 0x0A;  // kPa
@@ -36,22 +37,22 @@ const uint8_t INTAKE_AIR_TEMP                  = 0x0F;  // °C
 const uint8_t MAF_FLOW_RATE                    = 0x10;  // g/s
 const uint8_t THROTTLE_POSITION                = 0x11;  // %
 const uint8_t COMMANDED_SECONDARY_AIR_STATUS   = 0x12;  // bit encoded
-const uint8_t OXYGEN_SENSORS_PRESENT_2_BANKS   = 0x13;  // bit encoded    suported
-const uint8_t OXYGEN_SENSOR_1_A                = 0x14;  // V %            suported
-const uint8_t OXYGEN_SENSOR_2_A                = 0x15;  // V %            suported
+const uint8_t OXYGEN_SENSORS_PRESENT_2_BANKS   = 0x13;  // bit encoded    
+const uint8_t OXYGEN_SENSOR_1_A                = 0x14;  // V %            
+const uint8_t OXYGEN_SENSOR_2_A                = 0x15;  // V %            
 const uint8_t OXYGEN_SENSOR_3_A                = 0x16;  // V %
 const uint8_t OXYGEN_SENSOR_4_A                = 0x17;  // V %
 const uint8_t OXYGEN_SENSOR_5_A                = 0x18;  // V %
 const uint8_t OXYGEN_SENSOR_6_A                = 0x19;  // V %
 const uint8_t OXYGEN_SENSOR_7_A                = 0x1A;  // V %
 const uint8_t OXYGEN_SENSOR_8_A                = 0x1B;  // V %
-const uint8_t OBD_STANDARDS                    = 0x1C;  // bit encoded  suported
+const uint8_t OBD_STANDARDS                    = 0x1C;  // bit encoded  
 const uint8_t OXYGEN_SENSORS_PRESENT_4_BANKS   = 0x1D;  // bit encoded
 const uint8_t AUX_INPUT_STATUS                 = 0x1E;  // bit encoded
 const uint8_t RUN_TIME_SINCE_ENGINE_START      = 0x1F;  // sec
 
 const uint8_t SUPPORTED_PIDS_21_40             = 0x20;  // bit encoded
-const uint8_t DISTANCE_TRAVELED_WITH_MIL_ON    = 0x21;  // km           suported
+const uint8_t DISTANCE_TRAVELED_WITH_MIL_ON    = 0x21;  // km           
 const uint8_t FUEL_RAIL_PRESSURE               = 0x22;  // kPa
 const uint8_t FUEL_RAIL_GUAGE_PRESSURE         = 0x23;  // kPa
 const uint8_t OXYGEN_SENSOR_1_B                = 0x24;  // ratio V
