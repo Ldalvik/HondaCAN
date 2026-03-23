@@ -6,3 +6,5 @@ The goal is to eventually have a small collection of parsed and labeled CAN data
 This is accomplished using a method from OpenDBC. It uses the VIN, as well as calibration IDs from a list of known ECU addresses. Even the existence of certain ECUs (fwd camera, LKAS/ADAS) can help determine optional trim features.
 
 Unfortunately after changing a lot of features, my car was totaled and I am unable to test the new code. It will be uploaded as a second project until I can verify the changes didn't break anything. I plan on getting the same car but a higher trim.
+
+Edit: I was able to get a 2017 Accord Sport Special Edition and will be continuing to update this library. Signals between the 2016-2017 models are the same for all trims.
