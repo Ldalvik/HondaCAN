@@ -5,6 +5,7 @@
 #include "Vin.h"
 #include "VehicleData.h"
 #include "Accord_9.5/Profile.h"
+#include "Odyssey_2007/Profile.h"
 
 class HondaCAN
 {
